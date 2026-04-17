@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>拖延症終結指南｜第六敏 @d6min_ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #161C28;
+  --bg-2:      #1C2333;
+  --bg-3:      #252D3D;
+  --bg-4:      #2E3A50;
+  --accent:    #C4B8A8;
+  --blue:      #7B9EC4;
+  --gold:      #C9A84C;
+  --gold-l:    #E8C97A;
+  --white:     #FFFFFF;
+  --t2:        rgba(255,255,255,0.55);
+  --t3:        rgba(255,255,255,0.3);
+  --border:    rgba(255,255,255,0.07);
+  --ba:        rgba(196,184,168,0.2);
+  --bb:        rgba(123,158,196,0.2);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── PROGRESS ── */
+#bar {
+  position: fixed; top: 0; left: 0;
+  height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  z-index: 999;
+  transition: width 0.08s linear;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(170deg, #0d1520 0%, var(--bg-2) 100%);
+  padding: 60px 24px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-glow {
+  position: absolute;
+  bottom: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 360px; height: 200px;
+  background: radial-gradient(ellipse, rgba(196,184,168,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+  border: 1px solid rgba(201,168,76,0.28);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.hero-eyebrow span {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: inline-block;
+}
+
+.hero-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(26px, 7vw, 36px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.hero-title em { font-style: normal; color: var(--accent); }
+
+.hero-desc {
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.75;
+  max-width: 300px;
+  margin: 0 auto 20px;
+}
+
+.hero-tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.hero-tag {
+  font-size: 10px;
+  color: var(--blue);
+  background: rgba(123,158,196,0.08);
+  border: 1px solid rgba(123,158,196,0.18);
+  padding: 4px 10px;
+  border-radius: 14px;
+  letter-spacing: 0.04em;
+}
+
+.hero-line {
+  width: 36px; height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  margin: 0 auto 18px;
+}
+
+.hero-by {
+  font-size: 11px;
+  color: var(--t3);
+  letter-spacing: 0.08em;
+}
+.hero-by em { font-style: normal; color: var(--blue); }
+
+/* ── CONTAINER ── */
+.wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* ── BLOCK ── */
+.block { padding-top: 44px; }
+
+.block-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.block-num {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  background: rgba(196,184,168,0.08);
+  border: 1px solid var(--ba);
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.block-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.block-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 18px;
+}
+
+.block-title em { font-style: normal; color: var(--accent); }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin-top: 40px;
+}
+
+/* ── PROMPT CARDS ── */
+.prompt-list { display: flex; flex-direction: column; gap: 12px; }
+
+.prompt-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.prompt-scene {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+
+.prompt-badge {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(123,158,196,0.1);
+  border: 1px solid rgba(123,158,196,0.18);
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.prompt-body { padding: 12px 14px; }
+
+.prompt-label {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 6px;
+}
+
+.prompt-text {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 12px;
+  color: var(--accent);
+  line-height: 1.65;
+  background: rgba(196,184,168,0.05);
+  border: 1px solid var(--ba);
+  border-radius: 8px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.prompt-note {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--t2);
+  line-height: 1.6;
+  padding-left: 2px;
+}
+
+/* ── SOP FLOW ── */
+.sop-flow { display: flex; flex-direction: column; }
+
+.sop-item {
+  display: flex;
+  gap: 14px;
+  position: relative;
+}
+
+.sop-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: -12px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--ba), transparent);
+}
+
+.sop-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sop-dot {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--bg-4);
+  border: 1px solid var(--ba);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sop-body {
+  padding: 0 0 24px;
+  flex: 1;
+}
+
+.sop-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.sop-desc {
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.6;
+}
+
+.sop-time {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  background: rgba(123,158,196,0.08);
+  border: 1px solid rgba(123,158,196,0.15);
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+/* ── TOOL LIST ── */
+.tool-list { display: flex; flex-direction: column; gap: 10px; }
+
+.tool-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tool-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: var(--bg-4);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.tool-body { flex: 1; }
+
+.tool-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+
+.tool-use {
+  font-size: 11px;
+  color: var(--t2);
+  line-height: 1.5;
+}
+
+.tool-tag {
+  margin-top: 5px;
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: rgba(196,184,168,0.07);
+  border: 1px solid var(--ba);
+  padding: 2px 7px;
+  border-radius: 7px;
+}
+
+/* ── MYTH TABLE ── */
+.myth-list { display: flex; flex-direction: column; gap: 10px; }
+
+.myth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.myth-box {
+  border-radius: 10px;
+  padding: 12px 12px;
+}
+
+.myth-box.wrong {
+  background: rgba(255,80,80,0.05);
+  border: 1px solid rgba(255,80,80,0.12);
+}
+
+.myth-box.right {
+  background: rgba(123,158,196,0.06);
+  border: 1px solid rgba(123,158,196,0.18);
+}
+
+.myth-tag-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.myth-box.wrong .myth-tag-label { color: rgba(255,100,100,0.6); }
+.myth-box.right .myth-tag-label { color: var(--blue); }
+
+.myth-text {
+  font-size: 11px;
+  color: rgba(255,255,255,0.62);
+  line-height: 1.5;
+}
+
+/* ── QUOTE ── */
+.quote {
+  margin: 24px 0 0;
+  padding: 18px 16px;
+  border-left: 3px solid var(--accent);
+  background: rgba(196,184,168,0.04);
+  border-radius: 0 10px 10px 0;
+}
+
+.quote-text {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1.65;
+  margin-bottom: 6px;
+}
+
+.quote-src {
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: 0.06em;
+}
+
+/* ── CHECKLIST ── */
+.check-list { display: flex; flex-direction: column; gap: 8px; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.check-circle {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--ba);
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.check-circle-inner {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.check-text {
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.check-text strong {
+  color: var(--white);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1px;
+  font-size: 13px;
+}
+
+/* ── FOOTER CTA ── */
+.footer {
+  margin-top: 52px;
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: 36px 24px 40px;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.footer-divider {
+  width: 28px; height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  margin: 0 auto 22px;
+}
+
+.footer-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.footer-title em { font-style: normal; color: var(--accent); }
+
+.footer-desc {
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+.footer-next {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.footer-next-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--t2);
+}
+
+.footer-next-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.footer-handle {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  border: 1px solid rgba(123,158,196,0.25);
+  padding: 8px 22px;
+  border-radius: 22px;
+  margin-bottom: 20px;
+}
+
+.footer-brand {
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: 0.08em;
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow"><span></span> 限定解鎖資源 · 第六敏出品</div>
+  <h1 class="hero-title">拖延症<em>終結指南</em><br>AI 實戰懶人包</h1>
+  <p class="hero-desc">這份懶人包包含可以直接使用的 AI Prompt、每日 SOP 流程、以及精選工具清單，幫你從「想做」直接跳到「做完」</p>
+  <div class="hero-tags">
+    <span class="hero-tag">AI Prompt 包</span>
+    <span class="hero-tag">每日 SOP</span>
+    <span class="hero-tag">工具清單</span>
+    <span class="hero-tag">思維框架</span>
+  </div>
+  <div class="hero-line"></div>
+  <p class="hero-by">by <em>@d6min_ai</em>｜AI 工具教學 × 自媒體變現</p>
+</div>
+
+<div class="wrap">
+
+  <!-- ── BLOCK 1: AI Prompt 包 ── -->
+  <div class="block">
+    <div class="block-eyebrow">
+      <span class="block-num">Part 01</span>
+      <span class="block-label">直接複製使用</span>
+    </div>
+    <h2 class="block-title">AI <em>Prompt 提示詞包</em></h2>
+
+    <div class="prompt-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-scene">任務拆解 Prompt</span>
+          <span class="prompt-badge">ChatGPT / Claude</span>
+        </div>
+        <div class="prompt-body">
+          <p class="prompt-label">複製貼上 AI 即用</p>
+          <p class="prompt-text">我今天要完成「[填入你的任務]」，但我一直拖延無法開始。請幫我：
+1. 把這個任務拆成 5 個具體微步驟
+2. 每個步驟控制在 15 分鐘內完成
+3. 告訴我應該從哪一步開始最容易啟動</p>
+          <p class="prompt-note">把 [填入你的任務] 換成你今天最拖的那件事，例如「寫一篇 IG 貼文」或「回覆客戶提案」</p>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-scene">開工儀式設計 Prompt</span>
+          <span class="prompt-badge">ChatGPT / Claude</span>
+        </div>
+        <div class="prompt-body">
+          <p class="prompt-label">複製貼上 AI 即用</p>
+          <p class="prompt-text">我是一個自媒體創業者，每天早上都很難進入工作狀態。請幫我設計一套 10 分鐘的「開工儀式」，要求：
+● 不使用手機社群軟體
+● 能快速讓大腦進入專注模式
+● 可以在家或咖啡廳執行
+● 包含一個具體的「開始信號」動作</p>
+          <p class="prompt-note">可以把你的工作環境或習慣補充進去，AI 會給你更貼近的建議</p>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-scene">拖延根源分析 Prompt</span>
+          <span class="prompt-badge">ChatGPT / Claude</span>
+        </div>
+        <div class="prompt-body">
+          <p class="prompt-label">複製貼上 AI 即用</p>
+          <p class="prompt-text">我一直在拖延「[填入任務]」，已經拖了 [天數] 天。請幫我分析：
+1. 我拖延這件事最可能的 3 個心理原因
+2. 針對每個原因，給我一個具體的破解方法
+3. 給我一句話幫我重新框架這件事，讓我更想去做</p>
+          <p class="prompt-note">誠實填入你實際拖的任務和天數，AI 分析會更精準</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── BLOCK 2: 每日 SOP ── -->
+  <div class="block">
+    <div class="block-eyebrow">
+      <span class="block-num">Part 02</span>
+      <span class="block-label">每天照做就對了</span>
+    </div>
+    <h2 class="block-title"><em>每日行動</em> SOP 流程</h2>
+
+    <div class="sop-flow">
+
+      <div class="sop-item">
+        <div class="sop-left"><div class="sop-dot">早</div></div>
+        <div class="sop-body">
+          <p class="sop-title">起床後先不碰手機</p>
+          <p class="sop-desc">起床第一件事：喝水、寫下今天最重要的 1 件事。手機通知先靜音，社群等任務完成後再看。</p>
+          <span class="sop-time">起床後 10 分鐘</span>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-left"><div class="sop-dot">01</div></div>
+        <div class="sop-body">
+          <p class="sop-title">啟動開工儀式</p>
+          <p class="sop-desc">固定動作：泡咖啡或茶 → 戴上耳機 → 打開待辦清單 → 設定 25 分鐘番茄計時器。重複做，大腦會自動切換進工作模式。</p>
+          <span class="sop-time">工作前 5 分鐘</span>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-left"><div class="sop-dot">02</div></div>
+        <div class="sop-body">
+          <p class="sop-title">用 AI 拆解任務</p>
+          <p class="sop-desc">把今天要完成的事貼給 ChatGPT 或 Claude，讓 AI 幫你拆出第一步。任務越小越容易開始，啟動了就停不下來。</p>
+          <span class="sop-time">第一個番茄鐘前</span>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-left"><div class="sop-dot">03</div></div>
+        <div class="sop-body">
+          <p class="sop-title">番茄鐘工作循環</p>
+          <p class="sop-desc">25 分鐘專注 → 5 分鐘休息。工作時關掉所有通知，休息時離開螢幕。每完成 4 個番茄鐘，休息 20 分鐘。</p>
+          <span class="sop-time">每個工作區塊</span>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-left"><div class="sop-dot">04</div></div>
+        <div class="sop-body">
+          <p class="sop-title">完成後立刻記錄</p>
+          <p class="sop-desc">任務完成後，立刻在手機備忘錄寫下「今天完成了＿＿＿」。這個動作會觸發大腦的成就感，讓明天更容易開始。</p>
+          <span class="sop-time">每個任務結束後</span>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-left"><div class="sop-dot">晚</div></div>
+        <div class="sop-body">
+          <p class="sop-title">睡前 5 分鐘回顧</p>
+          <p class="sop-desc">寫下明天最重要的 1 件事，放在看得到的地方。不需要寫完整計畫，只需要一個方向，睡覺時大腦會自動處理。</p>
+          <span class="sop-time">睡前 5 分鐘</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── BLOCK 3: 工具清單 ── -->
+  <div class="block">
+    <div class="block-eyebrow">
+      <span class="block-num">Part 03</span>
+      <span class="block-label">第六敏親用推薦</span>
+    </div>
+    <h2 class="block-title"><em>精選工具</em>清單</h2>
+
+    <div class="tool-list">
+
+      <div class="tool-card">
+        <div class="tool-icon">🤖</div>
+        <div class="tool-body">
+          <p class="tool-name">Claude / ChatGPT</p>
+          <p class="tool-use">任務拆解、Prompt 輔助寫作、快速產出草稿。建議兩個都裝，用途略有不同。</p>
+          <span class="tool-tag">AI 核心工具</span>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🍅</div>
+        <div class="tool-body">
+          <p class="tool-name">Forest（番茄鐘 App）</p>
+          <p class="tool-use">計時的同時種虛擬樹，如果中途滑手機樹就死了。用遊戲機制逼自己專注，效果很好。</p>
+          <span class="tool-tag">專注力管理</span>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">📋</div>
+        <div class="tool-body">
+          <p class="tool-name">Notion</p>
+          <p class="tool-use">每日任務清單 + SOP 模板 + 內容行事曆，全部放在一起管理。自媒體創業必備。</p>
+          <span class="tool-tag">任務管理</span>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🎵</div>
+        <div class="tool-body">
+          <p class="tool-name">Brain.fm / 白噪音</p>
+          <p class="tool-use">專為深度工作設計的音樂，有研究背書。比一般音樂更能幫助進入心流狀態。</p>
+          <span class="tool-tag">專注環境</span>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🚫</div>
+        <div class="tool-body">
+          <p class="tool-name">Cold Turkey / One Sec</p>
+          <p class="tool-use">工作時自動封鎖社群媒體。One Sec 在開 IG 前強制讓你深呼吸一次，打斷衝動。</p>
+          <span class="tool-tag">干擾阻斷</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── BLOCK 4: 思維框架 ── -->
+  <div class="block">
+    <div class="block-eyebrow">
+      <span class="block-num">Part 04</span>
+      <span class="block-label">觀念升級</span>
+    </div>
+    <h2 class="block-title">打破這些<em>錯誤觀念</em></h2>
+
+    <div class="myth-list">
+      <div class="myth-row">
+        <div class="myth-box wrong">
+          <p class="myth-tag-label">✕ 錯誤</p>
+          <p class="myth-text">「等有靈感再做」</p>
+        </div>
+        <div class="myth-box right">
+          <p class="myth-tag-label">✓ 真相</p>
+          <p class="myth-text">靈感是行動的結果，不是前提</p>
+        </div>
+      </div>
+      <div class="myth-row">
+        <div class="myth-box wrong">
+          <p class="myth-tag-label">✕ 錯誤</p>
+          <p class="myth-text">「要完美才能發布」</p>
+        </div>
+        <div class="myth-box right">
+          <p class="myth-tag-label">✓ 真相</p>
+          <p class="myth-text">完成比完美更重要，先發布再優化</p>
+        </div>
+      </div>
+      <div class="myth-row">
+        <div class="myth-box wrong">
+          <p class="myth-tag-label">✕ 錯誤</p>
+          <p class="myth-text">「我天生就懶」</p>
+        </div>
+        <div class="myth-box right">
+          <p class="myth-tag-label">✓ 真相</p>
+          <p class="myth-text">任務太模糊，大腦在自我保護</p>
+        </div>
+      </div>
+      <div class="myth-row">
+        <div class="myth-box wrong">
+          <p class="myth-tag-label">✕ 錯誤</p>
+          <p class="myth-text">「努力才有成果」</p>
+        </div>
+        <div class="myth-box right">
+          <p class="myth-tag-label">✓ 真相</p>
+          <p class="myth-text">AI 時代，聰明用工具才是優勢</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p class="quote-text">「你的競爭力不在於你有多努力，而在於你有多快把想法變成行動。」</p>
+      <p class="quote-src">— 第六敏 @d6min_ai</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── BLOCK 5: 今日清單 ── -->
+  <div class="block">
+    <div class="block-eyebrow">
+      <span class="block-num">Part 05</span>
+      <span class="block-label">今天就做</span>
+    </div>
+    <h2 class="block-title">拿到這份資源後<br><em>你的第一步</em></h2>
+
+    <div class="check-list">
+      <div class="check-item">
+        <div class="check-circle"><div class="check-circle-inner"></div></div>
+        <div class="check-text">
+          <strong>複製第一個 Prompt，現在就貼給 AI</strong>
+          把今天最拖的那件事填進去，讓 AI 幫你拆解
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-circle"><div class="check-circle-inner"></div></div>
+        <div class="check-text">
+          <strong>下載 Forest，設定第一個 25 分鐘</strong>
+          不需要等準備好，現在就開始計時
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-circle"><div class="check-circle-inner"></div></div>
+        <div class="check-text">
+          <strong>把這個頁面截圖存起來</strong>
+          SOP 流程截圖，放在每天早上看得到的地方
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-circle"><div class="check-circle-inner"></div></div>
+        <div class="check-text">
+          <strong>追蹤 @d6min_ai</strong>
+          每週更新 AI 工具教學，這只是開始
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── FOOTER CTA ── -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="footer-divider"></div>
+    <h2 class="footer-title">想要更多<em>這樣的資源</em>？</h2>
+    <p class="footer-desc">每週我都會在 IG 分享 AI 工具教學、自媒體變現技巧，以及更多像這樣的實戰懶人包</p>
+    <div class="footer-next">
+      <div class="footer-next-item"><div class="footer-next-dot"></div><span>AI 工具實戰教學（每週更新）</span></div>
+      <div class="footer-next-item"><div class="footer-next-dot"></div><span>自媒體從 0 到第一筆被動收入</span></div>
+      <div class="footer-next-item"><div class="footer-next-dot"></div><span>個人品牌建立完整攻略</span></div>
+    </div>
+    <div class="footer-handle">追蹤 @d6min_ai</div>
+    <p class="footer-brand">第六敏｜AI 工具教學 × 自媒體變現</p>
+  </div>
+</div>
+
+<script>
+  const bar = document.getElementById('bar');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+</script>
+</body>
+</html>
